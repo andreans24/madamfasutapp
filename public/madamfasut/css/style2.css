@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #000;
+}
+
+.card {
+    max-width: 100%;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.card-body {
+    display: none;
+}
+
+.card.open .card-body {
+    display: block;
+}
+
+.rounded {
+    border-radius: 30px !important;
+    /*Aturnilairadiussesuaikebutuhan*/
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 30px !important;
+    -ms-border-radius: 30px !important;
+    -o-border-radius: 30px !important;
+    -webkit-border-radius: 30px !important;
+}
+
+
+.icon-black {
+    color: rgb(0, 0, 0);
+}
+
+
+.container {
+    max-width: 1600px;
+    /* Ubah sesuai kebutuhan */
+    margin: auto;
+    /* Agar tetap berada di tengah */
+    padding: 0 15px;
+    /* Sesuaikan padding jika perlu */
+}
