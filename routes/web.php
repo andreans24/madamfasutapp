@@ -8,7 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\RegionalController;
-use App\http\Controllers\GalleryController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\FenderController;
 use App\Http\Controllers\BollardController;
 
