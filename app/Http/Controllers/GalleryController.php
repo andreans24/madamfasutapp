@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Gallery;
 use App\Models\Category;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class GalleryController extends Controller
 {
@@ -31,27 +29,25 @@ class GalleryController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3048',
         ]);
 
-        // Ambil data dari request
         $categoryId = $request->input('category_id');
         $title = $request->input('title');
-        $category = Category::find($categoryId); // Mendapatkan data kategori terkait
+        $category = Category::find($categoryId);
 
-        // Pastikan file gambar ada di request
         if ($request->hasFile('image')) {
-            // Ambil file image
             $image = $request->file('image');
-            // Buat nama file unik dengan menambahkan timestamp di depan nama file asli
             $imageName = time() . '-' . $image->getClientOriginalName();
-            // Tentukan folder gallery sesuai nama kategori, simpan file gambar ke storage
-            $imagePath = $image->storeAs("gallery/{$category->name}", $imageName, 'public');
-        }
 
+            // Pindahkan gambar ke dalam folder public/gallery/{nama_kategori}
+            $imagePath = "gallery/{$category->name}/{$imageName}";
+            $image->move(public_path("gallery/{$category->name}"), $imageName); // Simpan gambar di folder public
+        }
 
         Gallery::create([
             'category_id' => $category->id,
             'title' => $title,
             'image' => $imagePath,
         ]);
+
         return redirect()->route('admin.gallery.index')->with('success', 'Gallery created successfully');
     }
 
@@ -77,19 +73,19 @@ class GalleryController extends Controller
         $category = Category::find($request->category_id);
         $title = $request->title;
 
-        // Handle image upload if a new image is uploaded
         if ($request->hasFile('image')) {
-            // Delete the old image
             if ($gallery->image) {
-                Storage::disk('public')->delete($gallery->image);
+                $oldImagePath = public_path($gallery->image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath); // Hapus gambar lama dari folder public
+                }
             }
 
-            // Store the new image
             $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $imagePath = $image->storeAs("gallery/{$category->name}", $imageName, 'public');
+            $imageName = time() . '-' . $image->getClientOriginalName();
+            $imagePath = "gallery/{$category->name}/{$imageName}";
+            $image->move(public_path("gallery/{$category->name}"), $imageName); // Simpan gambar di folder public
 
-            // Update image name in the database
             $gallery->image = $imagePath;
         }
 
@@ -107,11 +103,13 @@ class GalleryController extends Controller
     {
         $gallery = Gallery::findOrFail($id);
 
-        // Delete the image from storage if it exists
         if ($gallery->image) {
-            Storage::disk('public')->delete($gallery->image);
+            $imagePath = public_path($gallery->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath); // Hapus file gambar
+            }
         }
-        // Delete the gallery item from the database
+
         $gallery->delete();
 
         return redirect()->route('admin.gallery.index')->with('success', 'Gallery deleted successfully');

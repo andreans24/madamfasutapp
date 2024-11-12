@@ -73,8 +73,7 @@
                                     <div style="position: relative; overflow: hidden; border-radius: 8px;">
                                         <a href="{{ route('page-home2', ['category_id' => $category->id, 'gallery_id' => $gallery->id]) }}"
                                             style="text-decoration: none;">
-                                            <img src="{{ asset('storage/' . $gallery->image) }}"
-                                                alt="{{ $gallery->title }}"
+                                            <img src="{{ asset($gallery->image) }}" alt="{{ $gallery->title }}"
                                                 style="width: 100%; height: 100%; border-radius: 8px; transition: transform 0.3s ease; transform: scale(1);"
                                                 onmouseover="this.style.transform='scale(1.1)'"
                                                 onmouseout="this.style.transform='scale(1)'">

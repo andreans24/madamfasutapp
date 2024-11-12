@@ -33,7 +33,7 @@
                     <td>{{ $gallery->category->name }}</td>
                     <td>{{ $gallery->title }}</td>
                     <td>
-                        <img src="{{ asset('storage/' . $gallery->image) }}" alt="Gallery Image" width="100"
+                        <img src="{{ asset($gallery->image) }}" alt="Gallery Image" width="100"
                             class="d-block w-px-100 h-px-90 rounded">
                     </td>
                     <td>
