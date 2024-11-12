@@ -37,31 +37,15 @@ class GalleryController extends Controller
         $category = Category::find($categoryId); // Mendapatkan data kategori terkait
 
         // Pastikan file gambar ada di request
-        // if ($request->hasFile('image')) {
-        //     // Ambil file image
-        //     $image = $request->file('image');
-        //     // Buat nama file unik dengan menambahkan timestamp di depan nama file asli
-        //     $imageName = time() . '-' . $image->getClientOriginalName();
-        //     // Tentukan folder gallery sesuai nama kategori, simpan file gambar ke storage
-        //     $imagePath = $image->storeAs("gallery/{$category->name}", $imageName, 'public');
-        // }
-        // Public
         if ($request->hasFile('image')) {
-            // Ambil file gambar
+            // Ambil file image
             $image = $request->file('image');
             // Buat nama file unik dengan menambahkan timestamp di depan nama file asli
             $imageName = time() . '-' . $image->getClientOriginalName();
-
-            // Tentukan folder gallery sesuai nama kategori
-            $categoryFolder = Str::slug($category->name); // Membuat nama folder dari nama kategori
-
-            // Buat folder jika belum ada
-            $folderPath = "gallery/{$categoryFolder}";
-            Storage::disk('public')->makeDirectory($folderPath);
-
-            // Simpan file gambar ke folder yang sesuai
-            $imagePath = $image->storeAs($folderPath, $imageName, 'public');
+            // Tentukan folder gallery sesuai nama kategori, simpan file gambar ke storage
+            $imagePath = $image->storeAs("gallery/{$category->name}", $imageName, 'public');
         }
+
 
         Gallery::create([
             'category_id' => $category->id,
@@ -94,43 +78,20 @@ class GalleryController extends Controller
         $title = $request->title;
 
         // Handle image upload if a new image is uploaded
-        // if ($request->hasFile('image')) {
-        //     // Delete the old image
-        //     if ($gallery->image) {
-        //         Storage::disk('public')->delete($gallery->image);
-        //     }
-
-        //     // Store the new image
-        //     $image = $request->file('image');
-        //     $imageName = time() . '.' . $image->getClientOriginalExtension();
-        //     $imagePath = $image->storeAs("gallery/{$category->name}", $imageName, 'public');
-
-        //     // Update image name in the database
-        //     $gallery->image = $imagePath;
-        // }
-        // public
         if ($request->hasFile('image')) {
-            // Hapus gambar lama jika ada
+            // Delete the old image
             if ($gallery->image) {
                 Storage::disk('public')->delete($gallery->image);
             }
 
-            // Ambil file gambar baru
+            // Store the new image
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imagePath = $image->storeAs("gallery/{$category->name}", $imageName, 'public');
 
-            // Tentukan folder untuk kategori
-            $categoryFolder = Str::slug($category->name); // Nama folder berdasarkan kategori
-            $folderPath = "gallery/{$categoryFolder}";
-            Storage::disk('public')->makeDirectory($folderPath);
-
-            // Simpan gambar baru
-            $imagePath = $image->storeAs($folderPath, $imageName, 'public');
-
-            // Update path gambar baru di database
+            // Update image name in the database
             $gallery->image = $imagePath;
         }
-
 
         // Update other fields
         $gallery->category_id = $request->category_id;
@@ -153,6 +114,6 @@ class GalleryController extends Controller
         // Delete the gallery item from the database
         $gallery->delete();
 
-        return redirect()->route('admin.gallery.index')->with('error', 'Gallery deleted successfully');
+        return redirect()->route('admin.gallery.index')->with('success', 'Gallery deleted successfully');
     }
 }
