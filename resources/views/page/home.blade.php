@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <link rel="stylesheet" href="madamfasut/css/style1.css">
+    <link rel="stylesheet" href="{{ asset('madamfasut/css/style1.css') }}">
 </head>
 
 <body>
@@ -114,7 +114,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     <!-- Map JS -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="madamfasut/js/script1.js"></script>
     <script>
         // Inisialisasi peta dengan Leaflet
         var map = L.map('map').setView([-0.7893, 113.9213], 5); // Koordinat Indonesia, zoom level 5
