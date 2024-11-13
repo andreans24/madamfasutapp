@@ -115,6 +115,7 @@
     <!-- Map JS -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="madamfasut/js/script1.js"></script>
+<<<<<<< HEAD
     <script>
         // Inisialisasi peta dengan Leaflet
 var map = L.map('map').setView([-0.7893, 113.9213], 5); // Koordinat Indonesia, zoom level 5
@@ -168,6 +169,10 @@ document.querySelectorAll('.btn-circle').forEach(function(button) {
     });
 });
     </script>
+=======
+
+>>>>>>> f77c80612a9a89aa304f86cb86f6be0276c8af88
 </body>
+
 
 </html>

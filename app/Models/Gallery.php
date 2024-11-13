@@ -13,6 +13,8 @@ class Gallery extends Model
         'title',
         'image',
         'category_id',
+        'latitude',
+        'longitude'
     ];
 
     public function category()
