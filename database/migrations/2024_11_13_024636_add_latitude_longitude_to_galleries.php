@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->double('latitude')->nullable()->after('name');
+        Schema::table('galleries', function (Blueprint $table) {
+            $table->double('latitude')->nullable()->after('category_id');
             $table->double('longitude')->nullable()->after('latitude');
         });
     }
@@ -26,7 +26,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
+        Schema::table('galleries', function (Blueprint $table) {
             //
         });
     }
