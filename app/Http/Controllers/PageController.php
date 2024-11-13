@@ -84,8 +84,10 @@ class PageController extends Controller
 
     public function getGalleriesByCategory($categoryId)
     {
+        // Ambil semua gallery berdasarkan category_id
         $galleries = Gallery::where('category_id', $categoryId)
-            ->get(['latitude', 'longitude']); // Ambil latitude dan longitude berdasarkan category_id
+            ->select('latitude', 'longitude', 'id') // Pilih kolom yang diperlukan
+            ->get();
         return response()->json($galleries);
     }
 }
