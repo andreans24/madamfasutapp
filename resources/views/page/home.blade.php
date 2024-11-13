@@ -47,8 +47,8 @@
             <div class="row justify-content-center mb-4">
                 @foreach ($categories as $category)
                 <div class="col-6 col-md-3 d-flex justify-content-center">
-                    <button class="btn-circle" data-bs-toggle="modal"
-                        data-bs-target="#categoryModal{{ $category->id }}">
+                    <button class="btn-circle" data-bs-toggle="modal" data-bs-target="#categoryModal{{ $category->id }}"
+                        data-category-id="{{ $category->id }}">
                         <i class="fa-solid fa-map-location"></i>
                         <span class="fw-bold">{{ $category->name }}</span>
                     </button>
@@ -115,6 +115,8 @@
     <!-- Map JS -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="madamfasut/js/script1.js"></script>
+
 </body>
+
 
 </html>

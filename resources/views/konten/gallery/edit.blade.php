@@ -44,6 +44,23 @@
                         <input type="text" class="form-control" id="title" name="title" value="{{ $gallery->title }}" />
                     </div>
                 </div>
+                {{-- Latitude & Longitude --}}
+                <div class="row mb-4">
+                    <label class="col-sm-2 col-form-label" for="latitude">Latitude</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="latitude" name="latitude"
+                            value="{{ $gallery->latitude }}" />
+                    </div>
+                </div>
+
+                <!-- Longitude Input -->
+                <div class="row mb-4">
+                    <label class="col-sm-2 col-form-label" for="longitude">Longitude</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="longitude" name="longitude"
+                            value="{{ $gallery->longitude }}" />
+                    </div>
+                </div>
 
                 <!-- Image Input -->
                 <div class="row mb-4">

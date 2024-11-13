@@ -21,6 +21,8 @@ Route::get('/', [PageController::class, 'home'])->name('page-home1');
 Route::get('/page2/{category_id}/{gallery_id}', [PageController::class, 'home2'])->name('page-home2');
 Route::get('/page3', [PageController::class, 'home3'])->name('page-home3');
 Route::get('/category/{categoryId}', [PageController::class, 'showCategoryData'])->name('category.show');
+Route::get('/get-galleries-by-category/{categoryId}', [PageController::class, 'getGalleriesByCategory']);
+
 
 
 

@@ -27,10 +27,14 @@ class GalleryController extends Controller
             'category_id' => 'required|exists:categories,id',
             'title' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3048',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
         ]);
 
         $categoryId = $request->input('category_id');
         $title = $request->input('title');
+        $latitude = $request->input('latitude');
+        $longitude = $request->input('longitude');
         $category = Category::find($categoryId);
 
         if ($request->hasFile('image')) {
@@ -46,6 +50,8 @@ class GalleryController extends Controller
             'category_id' => $category->id,
             'title' => $title,
             'image' => $imagePath,
+            'latitude' => $latitude,   // Menyimpan latitude
+            'longitude' => $longitude,
         ]);
 
         return redirect()->route('admin.gallery.index')->with('success', 'Gallery created successfully');
@@ -68,10 +74,14 @@ class GalleryController extends Controller
             'category_id' => 'required|exists:categories,id',
             'title' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:3048',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
         ]);
 
         $category = Category::find($request->category_id);
         $title = $request->title;
+        $latitude = $request->latitude;
+        $longitude = $request->longitude;
 
         if ($request->hasFile('image')) {
             if ($gallery->image) {
@@ -92,6 +102,8 @@ class GalleryController extends Controller
         // Update other fields
         $gallery->category_id = $request->category_id;
         $gallery->title = $title;
+        $gallery->latitude = $latitude;   // Update latitude
+        $gallery->longitude = $longitude; // Update longitude
         $gallery->save();
 
 

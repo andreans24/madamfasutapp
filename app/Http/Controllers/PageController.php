@@ -13,9 +13,10 @@ class PageController extends Controller
 {
     public function home()
     {
+        $galleries = Gallery::all();
         $categories = Category::with('galleries')->get();
         // dd($categories);
-        return view('page.home', compact('categories'));
+        return view('page.home', compact('categories', 'galleries'));
     }
 
     public function home2($category_id, $gallery_id)
@@ -79,5 +80,12 @@ class PageController extends Controller
     public function home3()
     {
         return view('page.home3');
+    }
+
+    public function getGalleriesByCategory($categoryId)
+    {
+        $galleries = Gallery::where('category_id', $categoryId)
+            ->get(['latitude', 'longitude']); // Ambil latitude dan longitude berdasarkan category_id
+        return response()->json($galleries);
     }
 }
