@@ -3,7 +3,7 @@
 <div class="col-xxl">
     <div class="card mb-6">
         <div class="card-header d-flex align-items-center justify-content-between">
-            <h5 class="mb-0">Gallerry create</h5>
+            <h5 class="mb-0" style="font-weight: bold;">Gallery Create</h5>
             {{-- <small class="text-muted float-end">Default label</small> --}}
         </div>
         <div class="card-body">
@@ -34,9 +34,9 @@
 
                 <!-- Title Input -->
                 <div class="row mb-4">
-                    <label class="col-sm-2 col-form-label" for="title">Title</label>
+                    <label class="col-sm-2 col-form-label" for="title">Pelabuhan</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="" />
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Pelabuhan" />
                     </div>
                 </div>
                 {{-- Latitude & Longitude --}}
@@ -70,6 +70,7 @@
                 <div class="row justify-content-end">
                     <div class="col-sm-10">
                         <button type="submit" class="btn btn-primary">Send</button>
+                        <a href="{{ route('admin.gallery.index') }}" class="btn btn-outline-secondary">Cancel</a>
                     </div>
                 </div>
             </form>

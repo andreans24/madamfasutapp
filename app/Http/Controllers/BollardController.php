@@ -11,7 +11,8 @@ class BollardController extends Controller
 {
     public function index()
     {
-        return view('konten.bollard.index');
+        $bollards = Bollard::with('category', 'gallery')->get();
+        return view('konten.bollard.index', compact('bollards'));
     }
 
     public function create()
@@ -27,7 +28,6 @@ class BollardController extends Controller
             'fasilitas' => 'required|string|max:255',
             'baik' => 'required|integer',
             'rusak' => 'required|integer',
-            // 'jumlah' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
             'gallery_id' => 'required|exists:galleries,id',
         ]);
@@ -36,7 +36,6 @@ class BollardController extends Controller
             'fasilitas' => $request->fasilitas,
             'baik' => $request->baik,
             'rusak' => $request->rusak,
-            // 'jumlah' => $request->jumlah,
             'category_id' => $request->category_id,
             'gallery_id' => $request->gallery_id,
         ]);
@@ -49,7 +48,8 @@ class BollardController extends Controller
         $bollard = Bollard::findOrFail($id);
         $categories = Category::all();
         $galleries = Gallery::all();
-        return view('bollards.edit', compact('bollard', 'categories', 'galleries'));
+
+        return view('konten.bollard.edit', compact('bollard', 'categories', 'galleries'));
     }
 
     public function update(Request $request, $id)
@@ -58,7 +58,6 @@ class BollardController extends Controller
             'fasilitas' => 'required|string|max:255',
             'baik' => 'required|integer',
             'rusak' => 'required|integer',
-            // 'jumlah' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
             'gallery_id' => 'required|exists:galleries,id',
         ]);
@@ -68,7 +67,6 @@ class BollardController extends Controller
             'fasilitas' => $request->fasilitas,
             'baik' => $request->baik,
             'rusak' => $request->rusak,
-            // 'jumlah' => $request->jumlah,
             'category_id' => $request->category_id,
             'gallery_id' => $request->gallery_id,
         ]);

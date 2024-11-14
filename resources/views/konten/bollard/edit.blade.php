@@ -1,13 +1,18 @@
 @extends('layouts.dashboard')
+
 @section('content')
 <div class="card mb-6">
     <div class="card-header">
-        <h5 class="mb-0"><strong>Facility Create</strong></h5>
+        <h5 class="mb-0"><strong>Bollard Edit</strong></h5>
     </div>
     {{-- Form --}}
     <div class="card-body pt-4">
-        <form id="form" action="{{ route('admin.facility.store') }}" method="POST" enctype="multipart/form-data">
+        <form id="form" action="{{ route('admin.bollard.update', $bollard->id) }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
+            @method('PUT')
+            <!-- Gunakan PUT untuk pembaruan data -->
+
             <div class="row g-6">
                 {{-- Notifikasi error --}}
                 @if (session('error'))
@@ -31,7 +36,10 @@
                     <select id="category_id" name="category_id" class="form-select">
                         <option value="">Select</option>
                         @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <option value="{{ $category->id }}" {{ $category->id == $bollard->category_id ? 'selected' : ''
+                            }}>
+                            {{ $category->name }}
+                        </option>
                         @endforeach
                     </select>
                 </div>
@@ -39,45 +47,34 @@
                     <label class="form-label" for="gallery_id">Gallery</label>
                     <select id="gallery_id" name="gallery_id" class="form-select">
                         <option value="">Select</option>
-                        {{-- @foreach ($galleries as $gallery)
-                        <option value="{{ $gallery->id }}">{{ $gallery->title }}</option>
-                        @endforeach --}}
+                        @foreach ($galleries as $gallery)
+                        <option value="{{ $gallery->id }}" {{ $gallery->id == $bollard->gallery_id ? 'selected' : '' }}>
+                            {{ $gallery->title }}
+                        </option>
+                        @endforeach
                     </select>
                 </div>
-                <div class="col-md-6">
-                    <label class="form-label" for="title">Judul</label>
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Masukkan Judul" />
+                <div class="form-group">
+                    <label for="fasilitas">Fasilitas</label>
+                    <input type="text" name="fasilitas" id="fasilitas" class="form-control"
+                        value="{{ old('fasilitas', $bollard->fasilitas) }}">
                 </div>
-                <div class="col-md-6">
-                    <label for="fasilitas" class="form-label">Fasilitas</label>
-                    <input type="text" class="form-control" id="fasilitas" name="fasilitas" placeholder="Fasilitas" />
+
+                <div class="form-group">
+                    <label for="baik">Baik</label>
+                    <input type="number" name="baik" id="baik" class="form-control"
+                        value="{{ old('baik', $bollard->baik) }}">
                 </div>
-                <div class="col-md-6">
-                    <label for="panjang" class="form-label">P (m)</label>
-                    <input type="text" class="form-control" id="panjang" name="panjang"
-                        placeholder="Panjang dalam meter" />
-                </div>
-                <div class="col-md-6">
-                    <label for="luas" class="form-label">L (m)</label>
-                    <input type="text" class="form-control" id="luas" name="luas" placeholder="Lebar dalam meter" />
-                </div>
-                <div class="col-md-6">
-                    <label for="lws" class="form-label">LWS</label>
-                    <input type="text" class="form-control" id="lws" name="lws" placeholder="LWS" />
-                </div>
-                <div class="col-md-6">
-                    <label for="luas_m2" class="form-label">Luas (m2)</label>
-                    <input type="text" class="form-control" id="luas_m2" name="luas_m2" placeholder="Luas dalam m2" />
-                </div>
-                <div class="col-md-12">
-                    <label for="keterangan" class="form-label">Keterangan</label>
-                    <textarea class="form-control" id="keterangan" name="keterangan" rows="3"
-                        placeholder="Keterangan"></textarea>
+
+                <div class="form-group">
+                    <label for="rusak">Rusak</label>
+                    <input type="number" name="rusak" id="rusak" class="form-control"
+                        value="{{ old('rusak', $bollard->rusak) }}">
                 </div>
             </div>
             <div class="mt-6">
                 <button type="submit" class="btn btn-primary me-3">Save changes</button>
-                <a href="{{ route('admin.facility.index') }}" class="btn btn-outline-secondary"> Cancel </a>
+                <a href="{{ route('admin.bollard.index') }}" class="btn btn-outline-secondary">Cancel</a>
             </div>
         </form>
         {{-- Akhir Form --}}

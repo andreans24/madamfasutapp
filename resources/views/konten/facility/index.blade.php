@@ -12,7 +12,7 @@
 @endif
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="card-header">FACILITY</h5>
+        <h5 class="card-header">Facility List</h5>
         <a href="{{ route('admin.facility.create') }}" class="btn rounded-pill btn-primary">Create</a>
     </div>
     <div class="table-responsive text-nowrap">

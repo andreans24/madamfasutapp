@@ -12,7 +12,7 @@
 @endif
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="card-header">FENDER</h5>
+        <h5 class="card-header">Bollard List</h5>
         <a href="{{ route('admin.bollard.create') }}" class="btn rounded-pill btn-primary">Create</a>
     </div>
     <div class="table-responsive text-nowrap">
@@ -29,24 +29,27 @@
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
+                @foreach ($bollards as $b)
+
 
                 <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $b->category->name }}</td>
+                    <td>{{ $b->gallery->title }}</td>
+                    <td>{{ $b->fasilitas }}</td>
+                    <td>{{ $b->baik }}</td>
+                    <td>{{ $b->rusak }}</td>
                     <td>
                         <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                 <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="">
-                                    <i class="bx bx-edit-alt me-1"></i> Edit
+                                <a class="dropdown-item" href="{{ route('admin.bollard.edit', $b->id) }}">
+                                    <i class=" bx bx-edit-alt me-1"></i> Edit
                                 </a>
-                                <form id="delete-form-" action="" method="POST" style="display: inline-block;">
+                                <form id="delete-form-" action="{{ route('admin.bollard.destroy', $b->id) }}"
+                                    method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="dropdown-item"
@@ -58,7 +61,7 @@
                         </div>
                     </td>
                 </tr>
-
+                @endforeach
             </tbody>
         </table>
     </div>

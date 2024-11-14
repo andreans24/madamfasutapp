@@ -156,14 +156,21 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach ($bollards as $b)
                             <tr>
-
-                                {{-- <td>{{ $fender->created_at->format('d-m-Y') }}</td> --}}
+                                <td>{{ $b->fasilitas }}</td>
+                                <td>{{ $b->baik }}</td>
+                                <td>{{ $b->rusak }}</td>
+                                <td>{{ $b->baik + $b->rusak }}</td>
                             </tr>
-
+                            @endforeach
                         </tbody>
                         <tr>
+                            <td><strong>Total</strong></td>
+                            <td><strong>{{ $totalBaik }}</strong></td>
+                            <td><strong>{{ $totalRusak }}</strong></td>
+                            <td><strong>{{ $jumlah }}</strong></td>
+                        </tr>
 
                     </table>
                 </div>

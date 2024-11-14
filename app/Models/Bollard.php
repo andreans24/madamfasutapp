@@ -15,7 +15,6 @@ class Bollard extends Model
         'fasilitas',
         'baik',
         'rusak',
-        // 'jumlah',
         'category_id',
         'gallery_id',
     ];

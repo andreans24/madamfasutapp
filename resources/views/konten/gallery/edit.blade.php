@@ -3,7 +3,7 @@
 <div class="col-xxl">
     <div class="card mb-6">
         <div class="card-header d-flex align-items-center justify-content-between">
-            <h5 class="mb-0">Gallery Edit</h5>
+            <h5 class="mb-0" style="font-weight: bold">Gallery Edit</h5>
         </div>
         <div class="card-body">
             <form action="{{ route('admin.gallery.update', $gallery->id) }}" method="POST"
@@ -79,6 +79,7 @@
                 <div class="row justify-content-end">
                     <div class="col-sm-10">
                         <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="{{ route('admin.gallery.index') }}" class="btn btn-outline-secondary">Cancel</a>
                     </div>
                 </div>
             </form>

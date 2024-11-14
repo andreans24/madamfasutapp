@@ -29,6 +29,7 @@ class PageController extends Controller
             return redirect()->route('page-home1')->with('error', 'Kategori tidak ditemukan.');
         }
 
+        // GALLERY
         // Mencari galeri berdasarkan gallery_id dalam kategori yang ditemukan
         $gallery = $category->galleries()->find($gallery_id);
 
@@ -37,6 +38,7 @@ class PageController extends Controller
             return redirect()->route('page-home1')->with('error', 'Galeri tidak ditemukan.');
         }
 
+        // FACILITY
         // Mengambil data fasilitas yang terkait dengan category_id dan gallery_id
         $facilities = Facility::where('category_id', $category_id)
             ->where('gallery_id', $gallery_id)
@@ -59,10 +61,18 @@ class PageController extends Controller
             return $fender->baik + $fender->rusak;
         });
 
-        // Mengambil data Bollard terkait dengan category_id dan gallery_id
+
+        // BOLLARD
         $bollards = Bollard::where('category_id', $category_id)
             ->where('gallery_id', $gallery_id)
             ->get();
+
+        $totalBaik = $bollards->sum('baik');
+        $totalRusak = $bollards->sum('rusak');
+        $totalJumlah = $totalBaik + $totalRusak;
+        $jumlah = $bollards->sum(function ($bollards) {
+            return $bollards->baik + $bollards->rusak;
+        });
 
         // Mengirimkan data kategori dan galeri ke view
         return view('page.home2', compact(
@@ -74,6 +84,7 @@ class PageController extends Controller
             'totalBaik',
             'totalRusak',
             'jumlah',
+            'bollards'
         ));
     }
 

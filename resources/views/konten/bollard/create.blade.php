@@ -1,12 +1,32 @@
 @extends('layouts.dashboard')
 @section('content')
 <div class="card mb-6">
-
+    <div class="card-header">
+        <h5 class="mb-0"><strong>Bollard Create</strong></h5>
+    </div>
     {{-- Form --}}
     <div class="card-body pt-4">
         <form id="form" action="{{ route('admin.bollard.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
+
             <div class="row g-6">
+                {{-- Notifikasi error --}}
+                @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    <strong>Error!</strong> {{ session('error') }}
+                </div>
+                @endif
+
+                {{-- Menampilkan error validation per field --}}
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <div class="col-md-6">
                     <label class="form-label" for="category_id">Category</label>
                     <select id="category_id" name="category_id" class="form-select">
