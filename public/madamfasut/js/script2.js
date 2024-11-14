@@ -4,6 +4,7 @@ var map2 = L.map('map2').setView([-2.5489, 118.0149], 5); // Posisi awal Jakarta
 
 // Tambahkan tile layer (layer peta dasar)
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright"> </a> Pelindo MadamFasut',
     maxZoom: 18,
 }).addTo(map2);
 

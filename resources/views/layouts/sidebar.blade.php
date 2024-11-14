@@ -40,7 +40,7 @@
         <!-- Pages -->
         <li class="menu-item {{ Request::is('admin/gallery*') || Request::is('admin/gallery') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <i class="menu-icon tf-icons bx bxs-card"></i>
                 <div class="text-truncate">Home</div>
             </a>
             <ul class="menu-sub">
@@ -57,7 +57,7 @@
         <li
             class="menu-item {{ Request::is('admin/facility*') || Request::is('admin/fender') || Request::is('admin/bollard') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <i class="menu-icon tf-icons bx bxl-xing"></i>
                 <div class="text-truncate">Brief Information</div>
             </a>
             <ul class="menu-sub">
@@ -84,13 +84,13 @@
 
         <li class="menu-item {{ Request::is('admin/detail*') || Request::is('admin/detail') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <i class="menu-icon tf-icons bx bxs-detail"></i>
                 <div class="text-truncate">Detail Information</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item {{ Request::is('admin/facility') ? 'active' : '' }}">
                     <a href="{{ route('admin.facility.index') }}" class="menu-link">
-                        <div class="text-truncate">Facility</div>
+                        <div class="text-truncate">List</div>
                     </a>
                 </li>
             </ul>

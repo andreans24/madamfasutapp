@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- SweetAlert CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="madamfasut/css/style1.css">
+    <link rel="stylesheet" href="{{ asset('madamfasut/css/style1.css') }}">
     <style>
         .card-header {
             cursor: pointer;
@@ -30,7 +30,7 @@
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-3 col-md-2 text-center">
-                        <a href="index.html">
+                        <a href="{{ route('page-home1') }}">
                             <img class="img-fluid" src="{{asset('madamfasut/img/Pelindo.png')}}" alt="Logo">
                         </a>
                     </div>
@@ -38,7 +38,7 @@
                         <h1 class="font-weight-bold icon-white">Madam Fasut</h1>
                     </div>
                     <div class="col-3 col-md-2 text-center">
-                        <a href="{{route('page-home2')}}">
+                        <a href="#">
                             <i class="fa-solid fa-backward-step fa-2x icon-white"></i>
                         </a>
                     </div>

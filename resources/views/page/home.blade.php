@@ -119,7 +119,7 @@
         var map = L.map('map').setView([-0.7893, 113.9213], 5); // Koordinat Indonesia, zoom level 5
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright"> </a> Pelindo MadamFasut'
         }).addTo(map);
 
         // Array untuk menyimpan marker yang sudah ditambahkan

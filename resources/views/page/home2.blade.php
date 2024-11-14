@@ -179,7 +179,8 @@
         </div>
         <!-- Akhir Card Section -->
         <div class="text-center mt-4">
-            <a href="{{ route('page-home3') }}" class="btn btn-custom">Read More Detail</a>
+            <a href="{{ route('page-home3', ['category_id' => $facility->category_id, 'gallery_id' => $facility->gallery_id]) }}"
+                class="btn btn-custom">Read More Detail</a>
         </div>
 
     </div>
