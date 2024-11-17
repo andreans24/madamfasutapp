@@ -208,8 +208,6 @@
     </script>
     <!-- Map JS -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-
-    <script src="{{ asset('madamfasut/js/script1.js') }}"></script>
     <script src="{{ asset('madamfasut/js/script2.js') }}"></script>
 </body>
 

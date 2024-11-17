@@ -10,7 +10,21 @@
 <script src="{{ asset('admin-template/assets/js/main.js') }}"></script>
 <!-- Page JS -->
 <script src="{{ asset('admin-template/assets/js/dashboards-analytics.js') }}"></script>
+{{-- Sweet Alert --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+{{-- Data Tables --}}
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#tools_category_id').select2();
+	});
+
+</script>
+
+<!-- DataTables JS -->
 
 
 <!-- Place this tag before closing body tag for github widget button. -->

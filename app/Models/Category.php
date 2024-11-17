@@ -15,4 +15,9 @@ class Category extends Model
     {
         return $this->hasMany(Gallery::class);
     }
+
+    public function equipts()
+    {
+        return $this->hasMany(Equipt::class, 'category_id');
+    }
 }

@@ -1,5 +1,6 @@
 @extends('layouts.dashboard')
 @section('content')
+
 @if (session('success'))
 <div class="alert alert-success" id="successMessage">
     {{ session('success') }}
@@ -10,49 +11,61 @@
     <strong>Error!</strong> {{ session('error') }}
 </div>
 @endif
+
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h3 class="card-header">Bollard List</h3>
-        <a href="{{ route('admin.bollard.create') }}" class="btn rounded-pill btn-primary">Create</a>
+        <h5 class="card-header">Equipment List</h5>
+        <a href="{{ route('admin.equipt.create') }}" class="btn rounded-pill btn-primary">Create</a>
     </div>
-    <div class="card-body">
-        <!-- Dropdown filter category -->
-        <div class="btn-group mb-4">
-            <button type="button"
-                class="btn btn-secondary dropdown-toggle overflow-hidden d-sm-inline-flex d-block text-truncate"
-                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ request('category_id') ? $categories->find(request('category_id'))->name : 'Select Category'
-                }}
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li>
-                    <a class="dropdown-item" href="{{ route('admin.bollard.index') }}">All Categories </a>
-                </li>
-                @foreach ($categories as $category)
-                <li>
-                    <a class="dropdown-item"
-                        href="{{ route('admin.bollard.index', ['category_id' => $category->id]) }}">
-                        {{ $category->name }}
-                    </a>
-                </li>
-                @endforeach
-            </ul>
-        </div>
-
-        @foreach ($galleries as $gallery)
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">{{ $gallery->title }}</h5>
-                <p class="card-text">Click to see all Bollard of this gallery.</p>
-                <a href="{{ route('admin.bollard.show', $gallery->id) }}" class="btn btn-primary">View Details</a>
-            </div>
-            @if ($gallery->facilities->isEmpty())
-            <span class="badge rounded-pill bg-danger ms-auto">No Bollard</span>
-            @endif
-        </div>
-        @endforeach
+    <div class="table-responsive text-nowrap">
+        <table class="table">
+            <thead>
+                <tr class="text-nowrap">
+                    <th>#</th>
+                    <th>Fasilitas</th>
+                    <th>Unit</th>
+                    <th>Kondisi</th>
+                    <th>Category</th>
+                    <th>Gallery</th>
+                    <th>Tools Category</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="">
+                                    <i class="bx bx-edit-alt me-1"></i> Edit
+                                </a>
+                                <form id="delete-form- " action="" method="POST" style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="dropdown-item"
+                                        onclick="event.preventDefault(); confirmDelete()">
+                                        <i class="bx bx-trash me-1"></i> Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
+<!--/ Responsive Table -->
 
 <script>
     function confirmDelete(id) {

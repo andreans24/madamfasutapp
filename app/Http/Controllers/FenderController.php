@@ -9,10 +9,21 @@ use App\Models\Category;
 
 class FenderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $galleries = Gallery::all();
+        $categories = Category::all();
         $fenders = Fender::with('category', 'gallery')->get();
-        return view('konten.fender.index', compact('fenders'));
+
+        $categoryId = $request->get('category_id');
+        if ($categoryId) {
+            // Filter galleries berdasarkan kategori
+            $galleries = Gallery::where('category_id', $categoryId)->get();
+        } else {
+            // Jika tidak ada filter, tampilkan semua galleries
+            $galleries = Gallery::all();
+        }
+        return view('konten.fender.index', compact('fenders', 'galleries', 'categories'));
     }
 
     public function create()
@@ -55,7 +66,15 @@ class FenderController extends Controller
         $categories = Category::all();
         $galleries = Gallery::where('category_id', $fender->category_id)->get();
 
-        return view('admin.fender.edit', compact('fender', 'categories', 'galleries'));
+        return view('konten.fender.edit', compact('fender', 'categories', 'galleries'));
+    }
+
+    public function show($id)
+    {
+        $gallery = Gallery::findOrFail($id);
+        $fenders = Fender::where('gallery_id', $id)->get();
+
+        return view('konten.fender.show', compact('gallery', 'fenders'));
     }
 
     // Memperbarui data

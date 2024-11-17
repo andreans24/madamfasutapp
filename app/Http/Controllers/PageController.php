@@ -21,25 +21,21 @@ class PageController extends Controller
 
     public function home2($category_id, $gallery_id)
     {
-        // Mencari kategori berdasarkan category_id
+
         $category = Category::find($category_id);
 
-        // Jika kategori tidak ditemukan, redirect kembali ke halaman pertama
         if (!$category) {
             return redirect()->route('page-home1')->with('error', 'Kategori tidak ditemukan.');
         }
 
         // GALLERY
-        // Mencari galeri berdasarkan gallery_id dalam kategori yang ditemukan
         $gallery = $category->galleries()->find($gallery_id);
 
-        // Jika galeri tidak ditemukan, redirect kembali ke halaman pertama
         if (!$gallery) {
             return redirect()->route('page-home1')->with('error', 'Galeri tidak ditemukan.');
         }
 
         // FACILITY
-        // Mengambil data fasilitas yang terkait dengan category_id dan gallery_id
         $facilities = Facility::where('category_id', $category_id)
             ->where('gallery_id', $gallery_id)
             ->get();
@@ -47,8 +43,7 @@ class PageController extends Controller
         $totalPanjang = $facilities->sum(function ($facility) {
             return is_numeric($facility->panjang) ? $facility->panjang : 0;
         });
-
-        // Mengambil data Fender terkait dengan category_id dan gallery_id
+        // FENDER
         $fenders = Fender::where('category_id', $category_id)
             ->where('gallery_id', $gallery_id)
             ->get();

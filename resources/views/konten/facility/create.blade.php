@@ -2,7 +2,7 @@
 @section('content')
 <div class="card mb-6">
     <div class="card-header">
-        <h5 class="mb-0"><strong>Facility Create</strong></h5>
+        <h3 class="mb-0"><strong>Facility Create</strong></h3>
     </div>
     {{-- Form --}}
     <div class="card-body pt-4">
@@ -76,7 +76,7 @@
                 </div>
             </div>
             <div class="mt-6">
-                <button type="submit" class="btn btn-primary me-3">Save changes</button>
+                <button type="submit" class="btn btn-primary me-3">Save</button>
                 <a href="{{ route('admin.facility.index') }}" class="btn btn-outline-secondary"> Cancel </a>
             </div>
         </form>

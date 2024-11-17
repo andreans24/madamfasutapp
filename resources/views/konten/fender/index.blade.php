@@ -1,4 +1,5 @@
 @extends('layouts.dashboard')
+
 @section('content')
 @if (session('success'))
 <div class="alert alert-success" id="successMessage">
@@ -12,84 +13,49 @@
 @endif
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="card-header">Fender List</h5>
+        <h3 class="card-header">Fender List</h3>
         <a href="{{ route('admin.fender.create') }}" class="btn rounded-pill btn-primary">Create</a>
     </div>
-    <div class="table-responsive text-nowrap">
-        <table class="table">
-            <thead>
-                <tr class="text-nowrap">
-                    <th>#</th>
-                    <th>Category</th>
-                    <th>Gallery</th>
-                    <th>Fasilitas</th>
-                    <th>Baik</th>
-                    <th>Rusak</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody class="table-border-bottom-0">
-                @foreach ($fenders as $index => $fender)
-                <tr>
-                    <th scope="row">{{ $index + 1 }}</th>
-                    <td>{{ $fender->category->name }}</td>
-                    <td>{{ $fender->gallery->title }}</td>
-                    <td>{{ $fender->fasilitas }}</td>
-                    <td>{{ $fender->baik }}</td>
-                    <td>{{ $fender->rusak }}</td>
-                    <td>
-                        <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ route('admin.fender.edit', $fender->id) }}">
-                                    <i class="bx bx-edit-alt me-1"></i> Edit
-                                </a>
-                                <form id="delete-form-{{ $fender->id }}"
-                                    action="{{ route('admin.fender.destroy', $fender->id) }}" method="POST"
-                                    style="display: inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="dropdown-item"
-                                        onclick="event.preventDefault(); confirmDelete()">
-                                        <i class="bx bx-trash me-1"></i> Delete
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
+
+    <div class="card-body">
+        <!-- Dropdown filter category -->
+        <div class="btn-group mb-4">
+            <button type="button"
+                class="btn btn-secondary dropdown-toggle overflow-hidden d-sm-inline-flex d-block text-truncate"
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ request('category_id') ? $categories->find(request('category_id'))->name : 'Select Category'
+                }}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                    <a class="dropdown-item" href="{{ route('admin.fender.index') }}">All Categories </a>
+                </li>
+                @foreach ($categories as $category)
+                <li>
+                    <a class="dropdown-item" href="{{ route('admin.fender.index', ['category_id' => $category->id]) }}">
+                        {{ $category->name }}
+                    </a>
+                </li>
                 @endforeach
-            </tbody>
-        </table>
+            </ul>
+        </div>
+
+        @foreach ($galleries as $gallery)
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ $gallery->title }}</h5>
+                <p class="card-text">Click to see all Fender of this gallery.</p>
+                <a href="{{ route('admin.fender.show', $gallery->id) }}" class="btn btn-primary">View Details</a>
+            </div>
+            @if ($gallery->facilities->isEmpty())
+            <span class="badge rounded-pill bg-danger ms-auto">No Fender</span>
+            @endif
+        </div>
+        @endforeach
     </div>
 </div>
-<!--/ Responsive Table -->
 
 <script>
-    function confirmDelete(id) {
-    Swal.fire({
-        title: 'Are you sure?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#71dd37',
-        cancelButtonColor: '#ff3e1d',
-        confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // Ganti dengan ID form yang benar
-            document.getElementById(`delete-form-${id}`).submit();
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Failed to delete',
-                text: 'There was an issue with the deletion process',
-            });
-        }
-    });
-}
-
     //Notifikasi Hilang dalam 3 detik
     setTimeout(function() {
         var successMessage = document.getElementById('successMessage');
@@ -102,22 +68,17 @@
         }
     }, 3000);
 </script>
+
 <style>
     .alert-success {
         color: #155724;
-        /* Warna teks hijau gelap */
         background-color: #d4edda;
-        /* Warna latar hijau lembut */
         border-color: #c3e6cb;
-        /* Warna border hijau muda */
         border-radius: 8px;
-        /* Membuat border lebih melengkung */
         padding: 15px 20px;
-        /* Padding lebih besar untuk kenyamanan */
         font-weight: bold;
         font-size: 1rem;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        /* Bayangan lembut */
         margin-top: 10px;
     }
 
@@ -133,4 +94,5 @@
         margin-top: 10px;
     }
 </style>
+
 @endsection

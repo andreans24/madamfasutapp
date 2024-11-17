@@ -11,11 +11,22 @@ use Illuminate\Support\Facades\File;
 
 class FacilityController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $facilities = Facility::all();
+        $galleries = Gallery::all();
+        $categories = Category::all();
+
         $facilities = Facility::with('category', 'gallery')->get();
-        return view('konten.facility.index', compact('facilities'));
+        $categoryId = $request->get('category_id');
+        if ($categoryId) {
+            // Filter galleries berdasarkan kategori
+            $galleries = Gallery::where('category_id', $categoryId)->get();
+        } else {
+            // Jika tidak ada filter, tampilkan semua galleries
+            $galleries = Gallery::all();
+        }
+        return view('konten.facility.index', compact('facilities', 'galleries', 'categories'));
     }
 
     public function create()
@@ -66,6 +77,14 @@ class FacilityController extends Controller
         $galleries = Gallery::where('category_id', $facility->category_id)->get(); // Hanya galeri yang sesuai kategori
 
         return view('konten.facility.edit', compact('facility', 'categories', 'galleries'));
+    }
+
+    public function show($id)
+    {
+        $gallery = Gallery::findOrFail($id);
+        $facilities = Facility::where('gallery_id', $id)->get();
+
+        return view('konten.facility.show', compact('gallery', 'facilities'));
     }
 
     public function update(Request $request, Facility $facility)

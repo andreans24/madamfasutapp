@@ -12,32 +12,37 @@
 @endif
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h3 class="card-header">Galleries List</h3>
-        <a href="{{ route('admin.gallery.create') }}" class="btn rounded-pill btn-primary">Create</a>
+        <h5 class="card-header">Equipt List</h5>
+        <a href="{{ route('admin.tools.create') }}" class="btn rounded-pill btn-primary">Create</a>
     </div>
-    <div class="row mt-4">
-        @foreach ($galleries as $gallery)
-        <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card h-100">
-                <img class="img-fluid" src="{{ asset($gallery->image) }}" alt="Gallery Image" />
-                <div class="card-body">
-                    <h5 class="card-title">{{ $gallery->title }}</h5>
-                    <h6 class="card-subtitle text-muted">{{ $gallery->category->name }}</h6>
-                    <div class="mt-3">
-                        <a href="{{ route('admin.gallery.edit', $gallery->id) }}"
-                            class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('admin.gallery.destroy', $gallery->id) }}" method="POST"
-                            style="display: inline-block;" id="delete-form-{{ $gallery->id }}">
+    <div class="table-responsive text-nowrap">
+        <table class="table" id="example">
+            <thead>
+                <tr class="text-nowrap">
+                    <th>Id</th>
+                    <th>Nama Peralatan</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach ($toolsCategories as $tools)
+                <tr>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $tools->nama_peralatan }}</td>
+                    <td>
+                        <a href="{{ route('admin.tools.edit', $tools->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('admin.tools.destroy', $tools->id) }}" method="POST"
+                            style="display: inline-block;" id="delete-form-{{ $tools->id }}">
                             @csrf
                             @method('DELETE')
                             <button type="button" class="btn btn-danger btn-sm"
-                                onclick="confirmDelete({{ $gallery->id }})">Delete</button>
+                                onclick="confirmDelete({{ $tools->id }})">Delete</button>
                         </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endforeach
+                    </td>
+                </tr>
+            </tbody>
+            @endforeach
+        </table>
     </div>
 </div>
 

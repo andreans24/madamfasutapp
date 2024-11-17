@@ -48,7 +48,7 @@
                 <li
                     class="menu-item {{ Request::is('admin/gallery') || Request::is('admin/gallery/create') ? 'active' : '' }}">
                     <a href="{{ route('admin.gallery.index') }}" class="menu-link">
-                        <div class="text-truncate">Galleries</div>
+                        <div class="text-truncate">Regional</div>
                     </a>
                 </li>
             </ul>
@@ -82,20 +82,42 @@
             </ul>
         </li>
 
-        <li class="menu-item {{ Request::is('admin/detail*') || Request::is('admin/detail') ? 'active open' : '' }}">
+        <li class="menu-item {{ Request::is('admin/detail*') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bxs-detail"></i>
                 <div class="text-truncate">Detail Information</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item {{ Request::is('admin/facility') ? 'active' : '' }}">
-                    <a href="{{ route('admin.facility.index') }}" class="menu-link">
-                        <div class="text-truncate">List</div>
+                <li class="menu-item {{ Request::is('admin/equipt') ? 'active' : '' }}">
+                    <a href="{{ route('admin.equipt.index') }}" class="menu-link">
+                        <div class="text-truncate">Equipment Facilities</div>
                     </a>
                 </li>
             </ul>
         </li>
 
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Setup</span>
+        </li>
+        <li
+            class="menu-item {{ Request::is('admin/category') || Request::is('admin/tools-category*') ? 'active open' : '' }} ">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bxs-cog"></i>
+                <div class="text-truncate">Apps Settings</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item {{ Request::is('admin/category*') ? 'active open' : '' }}">
+                    <a href="{{ route('admin.category.index') }}" class="menu-link">
+                        <div class="text-truncate">Regional Settings</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('admin/tools-category*') ? 'active open' : '' }}">
+                    <a href="{{ route('admin.tools.index') }}" class="menu-link">
+                        <div class="text-truncate">Equipment Name</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
 
         <!-- Misc -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>

@@ -85,8 +85,9 @@
                 </div>
             </div>
             <div class="mt-6">
-                <button type="submit" class="btn btn-primary me-3">Update</button>
-                <a href="{{ route('admin.facility.index') }}" class="btn btn-outline-secondary"> Cancel </a>
+                <button type="submit" class="btn btn-primary me-3">Save changes </button>
+                <a href="{{ route('admin.facility.index') }}" class="btn btn-outline-secondary"> Cancel
+                </a>
             </div>
         </form>
         {{-- Akhir Form --}}

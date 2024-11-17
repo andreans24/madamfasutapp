@@ -1,15 +1,26 @@
 @extends('layouts.dashboard')
 @section('content')
+
+@if (session('success'))
+<div class="alert alert-success" id="successMessage">
+    {{ session('success') }}
+</div>
+@endif
+@if (session('error'))
+<div id="errorMessage" class="alert alert-danger" role="alert">
+    <strong>Error!</strong> {{ session('error') }}
+</div>
+@endif
+
+
 <div class="card mb-6">
     <div class="card-header">
-        <h3 class="mb-0"><strong>Edit Fender</strong></h3>
+        <h5 class="mb-0"><strong>Equipment Create</strong></h5>
     </div>
     {{-- Form --}}
     <div class="card-body pt-4">
-        <form id="form" action="{{ route('admin.fender.update', $fender->id) }}" method="POST"
-            enctype="multipart/form-data">
+        <form id="form" action="{{ route('admin.facility.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            @method('PUT') {{-- Metode PUT untuk update --}}
             <div class="row g-6">
                 {{-- Notifikasi error --}}
                 @if (session('error'))
@@ -33,10 +44,7 @@
                     <select id="category_id" name="category_id" class="form-select">
                         <option value="">Select</option>
                         @foreach ($categories as $category)
-                        <option value="{{ $category->id }}" {{ $fender->category_id == $category->id ? 'selected' : ''
-                            }}>
-                            {{ $category->name }}
-                        </option>
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -44,38 +52,43 @@
                     <label class="form-label" for="gallery_id">Gallery</label>
                     <select id="gallery_id" name="gallery_id" class="form-select">
                         <option value="">Select</option>
-                        @foreach ($galleries as $gallery)
-                        <option value="{{ $gallery->id }}" {{ $fender->gallery_id == $gallery->id ? 'selected' : '' }}>
-                            {{ $gallery->title }}
-                        </option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" for="tools_category_id">Tools Category</label>
+                    <select id="tools_category_id" name="tools_category_id" class="form-select">
+                        <option value="">Select</option>
+                        @foreach ($toolsCategories as $toolsCategory)
+                        <option value="{{ $toolsCategory->id }}">{{ $toolsCategory->nama_peralatan }}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="fasilitas">Fasilitas</label>
-                    <input type="text" name="fasilitas" id="fasilitas" class="form-control"
-                        value="{{ old('fasilitas', $fender->fasilitas) }}">
-                </div>
 
-                <div class="form-group">
-                    <label for="baik">Baik</label>
-                    <input type="number" name="baik" id="baik" class="form-control"
-                        value="{{ old('baik', $fender->baik) }}">
+                <div class="col-md-6">
+                    <label for="fasilitas" class="form-label">Fasilitas</label>
+                    <input type="text" class="form-control" id="fasilitas" name="fasilitas" placeholder="Fasilitas" />
                 </div>
-
-                <div class="form-group">
-                    <label for="rusak">Rusak</label>
-                    <input type="number" name="rusak" id="rusak" class="form-control"
-                        value="{{ old('rusak', $fender->rusak) }}">
+                <div class="col-md-6">
+                    <label for="unit" class="form-label">Unit</label>
+                    <input type="text" class="form-control" id="unit" name="unit" placeholder="Unit" />
+                </div>
+                <div class="col-md-6">
+                    <label for="kapasitas" class="form-label">Kapasitas</label>
+                    <input type="text" class="form-control" id="kapasitas" name="kapasitas" placeholder="Kapasitas" />
+                </div>
+                <div class="col-md-6">
+                    <label for="kondisi" class="form-label">Kondisi</label>
+                    <input type="text" class="form-control" id="kondisi" name="kondisi" placeholder="Kondisi" />
                 </div>
             </div>
             <div class="mt-6">
-                <button type="submit" class="btn btn-primary me-3">Save changes</button>
-                <a href="{{ route('admin.fender.index') }}" class="btn btn-outline-secondary"> Cancel </a>
+                <button type="submit" class="btn btn-primary me-3">Save</button>
+                <a href="{{ route('admin.equipt.index') }}" class="btn btn-outline-secondary"> Cancel </a>
             </div>
         </form>
-
+        {{-- Akhir Form --}}
     </div>
+    <!-- /Account -->
 </div>
 
 <script>
@@ -89,7 +102,7 @@
         if (categoryId) {
             // Membentuk URL secara dinamis menggunakan Blade untuk mendapatkan URL route
             var url = `{{ route('admin.galleries.byCategory', ['category_id' => '__categoryId__']) }}`;
-            url = url.replace('__categoryId__', categoryId);
+            url = url.replace('__categoryId__', categoryId);  // Gantilah '__categoryId__' dengan nilai categoryId
 
             // Debugging: lihat URL yang dibentuk
             console.log(url);
@@ -110,4 +123,5 @@
         }
     });
 </script>
+<!-- Scripts -->
 @endsection

@@ -1,43 +1,48 @@
 @extends('layouts.dashboard')
 @section('content')
 @if (session('success'))
-<div class="alert alert-success" id="successMessage">
+<div class="alert alert-success" id="successMessage2">
     {{ session('success') }}
 </div>
 @endif
 @if (session('error'))
-<div id="errorMessage" class="alert alert-danger" role="alert">
+<div id="errorMessage2" class="alert alert-danger" role="alert">
     <strong>Error!</strong> {{ session('error') }}
 </div>
 @endif
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h3 class="card-header">Galleries List</h3>
-        <a href="{{ route('admin.gallery.create') }}" class="btn rounded-pill btn-primary">Create</a>
+        <h5 class="card-header">Regional List</h5>
+        <a href="{{ route('admin.category.create') }}" class="btn rounded-pill btn-primary">Create</a>
     </div>
-    <div class="row mt-4">
-        @foreach ($galleries as $gallery)
-        <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card h-100">
-                <img class="img-fluid" src="{{ asset($gallery->image) }}" alt="Gallery Image" />
-                <div class="card-body">
-                    <h5 class="card-title">{{ $gallery->title }}</h5>
-                    <h6 class="card-subtitle text-muted">{{ $gallery->category->name }}</h6>
-                    <div class="mt-3">
-                        <a href="{{ route('admin.gallery.edit', $gallery->id) }}"
-                            class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('admin.gallery.destroy', $gallery->id) }}" method="POST"
-                            style="display: inline-block;" id="delete-form-{{ $gallery->id }}">
+    <div class="table-responsive text-nowrap">
+        <table class="table">
+            <thead>
+                <tr class="text-nowrap">
+                    <th>Id</th>
+                    <th>Nama Regional</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach ($category as $cat)
+                <tr>
+                    <th scope="row">{{ $loop->iteration }} </th>
+                    <td>{{ $cat->name }}</td>
+                    <td>
+                        <a href="{{ route('admin.category.edit', $cat->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('admin.category.destroy', $cat->id) }}" method="POST"
+                            style="display: inline-block;" id="delete-form-{{ $cat->id }}">
                             @csrf
                             @method('DELETE')
                             <button type="button" class="btn btn-danger btn-sm"
-                                onclick="confirmDelete({{ $gallery->id }})">Delete</button>
+                                onclick="confirmDelete({{ $cat->id }})">Delete</button>
                         </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endforeach
+                    </td>
+                </tr>
+            </tbody>
+            @endforeach
+        </table>
     </div>
 </div>
 
@@ -62,8 +67,8 @@
 
         //Notifikasi Hilang dalam 3 detik
         setTimeout(function() {
-            var successMessage = document.getElementById('successMessage');
-            var errorMessage = document.getElementById('errorMessage');
+            var successMessage = document.getElementById('successMessage2');
+            var errorMessage = document.getElementById('errorMessage2');
             if (successMessage) {
                 successMessage.style.display = 'none';
             }

@@ -9,10 +9,21 @@ use App\Models\Bollard;
 
 class BollardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $galleries = Gallery::all();
+        $categories = Category::all();
         $bollards = Bollard::with('category', 'gallery')->get();
-        return view('konten.bollard.index', compact('bollards'));
+        $categoryId = $request->get('category_id');
+        if ($categoryId) {
+            // Filter galleries berdasarkan kategori
+            $galleries = Gallery::where('category_id', $categoryId)->get();
+        } else {
+            // Jika tidak ada filter, tampilkan semua galleries
+            $galleries = Gallery::all();
+        }
+
+        return view('konten.bollard.index', compact('bollards', 'galleries', 'categories'));
     }
 
     public function create()
@@ -50,6 +61,14 @@ class BollardController extends Controller
         $galleries = Gallery::all();
 
         return view('konten.bollard.edit', compact('bollard', 'categories', 'galleries'));
+    }
+
+    public function show($id)
+    {
+        $gallery = Gallery::findOrFail($id);
+        $bollards = Bollard::where('gallery_id', $id)->get();
+
+        return view('konten.bollard.show', compact('gallery', 'bollards'));
     }
 
     public function update(Request $request, $id)

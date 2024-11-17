@@ -26,4 +26,9 @@ class Gallery extends Model
     {
         return $this->hasMany(Facility::class);
     }
+
+    public function equipts()
+    {
+        return $this->hasMany(Equipt::class, 'tools_category_id');
+    }
 }
