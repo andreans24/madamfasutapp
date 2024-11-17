@@ -67,7 +67,7 @@
         <div class="container card-section">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center" onclick="toggleCard(this)">
-                    Facility : {{ $facilities[0]->gallery->title }}
+                    Facility : {{ $facilities[0]->gallery->title }}s
                     <span class="toggleIcon">+</span>
                 </div>
                 <div class="card-body p-3">

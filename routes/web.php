@@ -24,6 +24,7 @@ Route::get('/page2/{category_id}/{gallery_id}', [PageController::class, 'home2']
 Route::get('/page3/{category_id}/{gallery_id}', [PageController::class, 'home3'])->name('page-home3');
 Route::get('/category/{categoryId}', [PageController::class, 'showCategoryData'])->name('category.show');
 Route::get('/get-galleries-by-category/{categoryId}', [PageController::class, 'getGalleriesByCategory']);
+Route::get('/show/{category_id}/{gallery_id}', [PageController::class, 'show'])->name('page-error');
 
 
 // Route group untuk halaman admin dengan prefix 'admin' dan nama 'admin.'

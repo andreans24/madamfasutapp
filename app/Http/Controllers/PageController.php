@@ -39,6 +39,9 @@ class PageController extends Controller
         $facilities = Facility::where('category_id', $category_id)
             ->where('gallery_id', $gallery_id)
             ->get();
+        if ($facilities->isEmpty()) {
+            return view('page.data-empty');
+        }
 
         $totalPanjang = $facilities->sum(function ($facility) {
             return is_numeric($facility->panjang) ? $facility->panjang : 0;
@@ -82,6 +85,24 @@ class PageController extends Controller
             'bollards'
         ));
     }
+
+    public function show($category_id, $gallery_id)
+    {
+        // Cari kategori dan galeri berdasarkan ID
+        $category = Category::find($category_id);
+        $gallery = Gallery::find($gallery_id);
+
+        // Cek apakah data kategori dan galeri ditemukan
+        if (!$category || !$gallery) {
+            // Jika salah satu data tidak ditemukan, tampilkan halaman "Data Tidak Tersedia"
+            return view('data_tidak_tersedia', compact('category_id', 'gallery_id'));
+        }
+
+        // Jika data ditemukan, tampilkan halaman dengan data yang ditemukan
+        return view('page.home2', compact('category', 'gallery'));
+    }
+
+
 
     public function home3()
     {
