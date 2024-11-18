@@ -72,6 +72,7 @@ class PageController extends Controller
             return $bollards->baik + $bollards->rusak;
         });
 
+
         // Mengirimkan data kategori dan galeri ke view
         return view('page.home2', compact(
             'category',
@@ -101,8 +102,6 @@ class PageController extends Controller
         // Jika data ditemukan, tampilkan halaman dengan data yang ditemukan
         return view('page.home2', compact('category', 'gallery'));
     }
-
-
 
     public function home3()
     {
