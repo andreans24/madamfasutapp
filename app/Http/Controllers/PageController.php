@@ -51,11 +51,11 @@ class PageController extends Controller
             ->where('gallery_id', $gallery_id)
             ->get();
 
-        // Menghitung total baik dan rusak
-        $totalBaik = $fenders->sum('baik');
-        $totalRusak = $fenders->sum('rusak');
-        $totalJumlah = $totalBaik + $totalRusak;
-        $jumlah = $fenders->sum(function ($fender) {
+
+        $totalBaik1 = $fenders->sum('baik');
+        $totalRusak1 = $fenders->sum('rusak');
+        $totalJumlah = $totalBaik1 + $totalRusak1;
+        $jumlah1 = $fenders->sum(function ($fender) {
             return $fender->baik + $fender->rusak;
         });
 
@@ -80,8 +80,11 @@ class PageController extends Controller
             'facilities',
             'fenders',
             'totalPanjang',
+            'totalBaik1',
+            'totalRusak1',
             'totalBaik',
             'totalRusak',
+            'jumlah1',
             'jumlah',
             'bollards'
         ));

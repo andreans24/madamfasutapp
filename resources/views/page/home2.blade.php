@@ -209,9 +209,9 @@
                             </tbody>
                             <tr>
                                 <td><strong>Total</strong></td>
-                                <td><strong>{{ $totalBaik }}</strong></td>
-                                <td><strong>{{ $totalRusak }}</strong></td>
-                                <td><strong>{{ $jumlah }}</strong></td>
+                                <td><strong>{{ $totalBaik1 }}</strong></td>
+                                <td><strong>{{ $totalRusak1 }}</strong></td>
+                                <td><strong>{{ $jumlah1 }}</strong></td>
                             </tr>
                         </table>
                     </div>
