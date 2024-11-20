@@ -109,8 +109,12 @@
                         <h1 class="font-weight-bold icon-white">Madam Fasut</h1>
                     </div>
                     <div class="col-3 col-md-2 text-center">
-                        <a href="{{ route('page-home1') }}">
-                            <i class="fa-solid fa-backward-step fa-2x icon-white"></i>
+                        <a href="">
+                            <img class="img-fluid" src="{{asset('madamfasut/img/bumn.png')}}" alt="Logo">
+                        </a>
+                    </div>
+                    <div class="col-3 col-md-2 text-center">
+                        <a href="{{ route('page-home1') }}" class="btn btn-custom"> <strong>Back</strong>
                         </a>
                     </div>
                 </div>
@@ -256,7 +260,7 @@
 
         <div class="text-center mt-4" style="margin-bottom: 50px;">
             <a href="{{ route('page-home3', ['category_id' => $facility->category_id, 'gallery_id' => $facility->gallery_id]) }}"
-                class="btn btn-custom">Read More Detail</a>
+                class="btn btn-custom"><strong> Read More Detail </strong></a>
         </div>
 
     </div>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Madam Fasut | Detail</title>
+    <title>Madam Fasut | Home</title>
 
     <link rel="icon" type="image/png" href="{{asset('madamfasut/img/favicon.ico')}}">
     <!-- Bootstrap CSS -->
@@ -14,10 +14,15 @@
     <!-- SweetAlert CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="{{ asset('madamfasut/css/style1.css') }}">
-
+    <style>
+        .card-header {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
+
     <!-- Container -->
     <div class="container-fluid text-center p-0">
         <!-- Navbar -->
@@ -33,12 +38,8 @@
                         <h1 class="font-weight-bold icon-white">Madam Fasut</h1>
                     </div>
                     <div class="col-3 col-md-2 text-center">
-                        <a href="">
-                            <img class="img-fluid" src="{{asset('madamfasut/img/bumn.png')}}" alt="Logo">
-                        </a>
-                    </div>
-                    <div class="col-3 col-md-2 text-center">
-                        <a href="{{ route('page-home1') }}" class="btn btn-custom"> <strong>Back</strong>
+                        <a href="#">
+                            <i class="fa-solid fa-backward-step fa-2x icon-white"></i>
                         </a>
                     </div>
                 </div>
@@ -89,69 +90,90 @@
             </div>
         </div>
         <!-- akhir carousel -->
-        {{-- Content --}}
-        <div class="container2 my-5">
-            <div class="card2">
-                <div class="card-header">
-                    Header
+
+        <!-- card -->
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card2">
+                        <div class="card-header d-flex justify-content-between align-items-center"
+                            onclick="toggleCard(this)">
+                            Informasi 1
+                            <span class="toggleIcon">+</span>
+                        </div>
+                        <div class="card-body p-3" style="display: none;">
+                            <p>Ini adalah informasi detail : <br>
+                                yang dapat dilihat Kamu bisa menambahkan konten lainnya
+                                di sini sesuai kebutuhan.
+                            </p>
+                            <!-- Tambahkan tabel di sini -->
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>John Doe</td>
+                                        <td>john@example.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Jane Smith</td>
+                                        <td>jane@example.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body bg-light border">
-                    <h5 class="card-title">Title</h5>
-                    <p class="justify">This is a simple card example. You can add your content here.
-                        Lorem
-                        ipsum dolor
-                        sit amet, consectetur adipisicing elit. Beatae inventore enim ducimus adipisci magni dolore
-                        fugit ex accusantium, id dignissimos saepe iste, deleniti incidunt quasi sit tempora debitis
-                        eaque? Eveniet explicabo adipisci delectus nihil? Eum, reprehenderit ad maiores atque possimus
-                        nulla suscipit? Quaerat perspiciatis in nesciunt, quisquam nihil molestias odit neque
-                        dignissimos exercitationem ipsam animi enim? Assumenda, dicta! Ipsa eaque explicabo, dignissimos
-                        deserunt laboriosam hic magnam reprehenderit repellendus dicta labore sequi harum eligendi animi
-                        iure quibusdam sapiente asperiores eos aperiam mollitia voluptatibus ratione et similique
-                        veritatis possimus? Ex odit sed iure debitis dolores sint, autem soluta architecto nesciunt
-                        dolore aliquam commodi velit molestiae numquam, labore distinctio? Quaerat quas laboriosam
-                        explicabo facere, deserunt aliquid. Esse aliquam et ipsum illo facilis debitis eveniet
-                        voluptatem recusandae, delectus exercitationem dolor facere beatae. Aut obcaecati soluta ab
-                        necessitatibus qui perspiciatis vel dolorem molestiae et earum, autem labore sunt tenetur!
-                        Consequatur ipsa illum porro? Eos numquam molestias explicabo. Facilis veritatis, dolor
-                        eligendi, itaque deleniti nobis aperiam adipisci libero nihil eius voluptatum. Omnis soluta,</p>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Nama Fasilitas</th>
-                                <th>P (m)</th>
-                                <th>L (m)</th>
-                                <th>LWS</th>
-                                <th>Luas (m2)</th>
-                                <th>Keterangan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                        <tr>
-                            <td><strong>Total</strong></td>
-                            <td><strong></strong></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table>
-                    <a href="#" class="btn btn-danger"><strong><i class="fa-solid fa-file-pdf"></i> Download
-                            PDF</strong></a>
+
+                <div class="col-md-6">
+                    <div class="card2">
+                        <div class="card-header d-flex justify-content-between align-items-center"
+                            onclick="toggleCard(this)">
+                            Informasi 2
+                            <span class="toggleIcon">+</span>
+                        </div>
+                        <div class="card-body p-3" style="display: none;">
+                            <p>Ini adalah informasi detail : <br>
+                                yang dapat dilihat Kamu bisa menambahkan konten lainnya
+                                di sini sesuai kebutuhan.
+                            </p>
+                            <!-- Tambahkan tabel di sini -->
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Alice Johnson</td>
+                                        <td>alice@example.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Bob Brown</td>
+                                        <td>bob@example.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    {{-- Akhir Content --}}
+        <!-- Akhir Content -->
 
+    </div>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
@@ -159,6 +181,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- SweetAlert JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- toggle card -->
+    <script>
+        // toggle card 
+        function toggleCard(header) {
+            const cardBody = header.nextElementSibling;
+            const icon = header.querySelector('.toggleIcon'); // Menggunakan class
+
+            if (cardBody.style.display === "none" || cardBody.style.display === "") {
+                cardBody.style.display = "block";
+                icon.textContent = '-'; // change to minus
+            } else {
+                cardBody.style.display = "none";
+                icon.textContent = '+'; // change to plus
+            }
+        }
+    </script>
+
+    <script src="madamfasut/js/script1.js"></script>
 </body>
 
 </html>

@@ -3,7 +3,10 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h3 class="card-title">Fender in Gallery: "<strong>{{ $gallery->title }}</strong>"</h3>
-        <a href="{{ route('admin.fender.index') }}" class="btn btn-secondary">Back</a>
+        <div class="d-flex gap-2">
+            <a href="{{ route('admin.fender.create') }}" class="btn btn-primary">Create</a>
+            <a href="{{ route('admin.fender.index') }}" class="btn btn-secondary">Back</a>
+        </div>
     </div>
     <div class="card-body">
         @forelse ($fenders as $fender)

@@ -13,7 +13,7 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h3 class="card-header">Facility List</h3>
-        <a href="{{ route('admin.facility.create') }}" class="btn rounded-pill btn-primary">Create</a>
+
     </div>
     <div class="card-body">
         <!-- Dropdown filter category -->

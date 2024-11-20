@@ -1,6 +1,6 @@
 /* --- Global Styles --- */
 body {
-    background-color: #2674c1;
+    background-color: #0e73b9;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
@@ -104,7 +104,7 @@ h1 {
     background-color: rgba(255, 255, 0, 0.9);
     box-shadow: 0 0 5px rgb(255, 255, 0);
     color: #000000;
-    padding: 10px 20px;
+    padding: 8px 20px;
     /* Ukuran padding untuk tombol */
     border: none;
     /* Menghilangkan border */
@@ -217,51 +217,6 @@ h1 {
     }
 }
 
-/* .card-header {
-    cursor: pointer;
-} */
-
-/* Membuat peta tetap di posisi saat scroll */
-/* .map-container2 {
-    position: relative;
-    overflow: hidden;
-} */
-
-/* .card-section2 {
-    margin-top: 120px; 
-    padding: 20px;
-    height: calc(100vh - 520px); 
-    overflow-y: auto; 
-    z-index: 0; 
-} */
-
-/* MAP 2 */
-/* #map2 {
-    position: sticky;
-    top: 0;
-    left: 0;
-    height: 600px;
-    width: 100%;
-    margin-top: 150px;
-    margin-bottom: 20px;
-    z-index: 0;
-    margin-bottom: 1.5rem;
-    border-radius: 15px;
-    overflow: hidden;
-    z-index: 1;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    -ms-border-radius: 15px;
-    -o-border-radius: 15px;
-} */
-
-/* Pengaturan map dan card */
-
-
-
-
-
-
 
 
 /* Media query untuk perangkat kecil */
@@ -340,10 +295,6 @@ h1 {
     max-height: 400px;
 }
 
-.card.open .card-body {
-    display: block;
-}
-
 .rounded {
     border-radius: 30px !important;
     /*Aturnilairadiussesuaikebutuhan*/
@@ -374,35 +325,40 @@ h1 {
 
 /* Card indx3.html */
 .card2 {
-    max-width: 1400px;
-    /* Atur lebar maksimum card */
     width: 100%;
-    /* Atur lebar card agar responsif */
     margin: 75px auto;
-    /* Jarak atas untuk menghindari navbar + auto center */
     background-color: #fff;
-    /* Warna latar belakang card */
     border-radius: 8px;
-    /* Sudut card */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Bayangan */
     overflow: hidden;
-    /* Menghindari konten overflow */
     transition: max-height 0.3s ease;
-    /* Animasi untuk pembukaan card */
     margin-bottom: 20px;
-    /* Jarak antara card dengan card lainnya */
+    min-height: 900px;
 }
 
+@media (max-width: 768px) {
+    .card2 {
+        width: 100%; /* Menyesuaikan lebar card pada layar kecil */
+        max-width: 100%;
+    }
+}
 
 .card-body {
-    display: none;
+    display: block;
     color: #000;
     text-align: left;
+    max-height: 900px;
+
 }
 
-.card.open .card-body {
-    display: block;
+.justify {
+    text-align: justify;
+}
+
+.container2 {
+    max-width: 1900px;
+    margin: auto;
+    padding: 10px 15px;
 }
 
 .rounded {
@@ -419,15 +375,7 @@ h1 {
     color: rgb(0, 0, 0);
 }
 
-.container {
-    max-width: 1600px;
-    /* Ubah sesuai kebutuhan */
-    margin: auto;
-    /* Agar tetap berada di tengah */
-    padding: 10 15px;
-    /* Sesuaikan padding jika perlu */
 
-}
 
 .carousel-container {
     margin-top: 120px;

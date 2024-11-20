@@ -1,9 +1,13 @@
 @extends('layouts.dashboard')
 @section('content')
+
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="card-title">Facilities in Gallery: "<strong>{{ $gallery->title }}</strong>"</h5>
-        <a href="{{ route('admin.facility.index') }}" class="btn btn-secondary">Back</a>
+        <div class="d-flex gap-2">
+            <a href="{{ route('admin.facility.create') }}" class="btn btn-primary">Create</a>
+            <a href="{{ route('admin.facility.index') }}" class="btn btn-secondary">Back</a>
+        </div>
     </div>
     <div class="card-body">
         @forelse ($facilities as $facility)

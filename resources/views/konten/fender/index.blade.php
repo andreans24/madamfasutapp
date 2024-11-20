@@ -14,7 +14,6 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h3 class="card-header">Fender List</h3>
-        <a href="{{ route('admin.fender.create') }}" class="btn rounded-pill btn-primary">Create</a>
     </div>
 
     <div class="card-body">

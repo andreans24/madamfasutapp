@@ -67,7 +67,7 @@
                 </div> --}}
             </div>
             <div class="mt-6">
-                <button type="submit" class="btn btn-primary me-3">Save changes</button>
+                <button type="submit" class="btn btn-primary me-3">Save</button>
                 <a href="{{ route('admin.bollard.index') }}" class="btn btn-outline-secondary"> Cancel </a>
             </div>
         </form>

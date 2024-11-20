@@ -64,7 +64,7 @@ class FacilityController extends Controller
             'keterangan' => $validatedData['keterangan'],
         ]);
 
-        return redirect()->route('admin.facility.index')->with('success', 'Fasilitas berhasil ditambahkan.');
+        return redirect()->route('admin.facility.index')->with('success', 'Facility successfully created!.');
     }
 
     public function edit($id)
@@ -105,7 +105,7 @@ class FacilityController extends Controller
         // Memperbarui data fasilitas
         $facility->update($validatedData);
 
-        return redirect()->route('admin.facility.index')->with('success', 'Fasilitas berhasil diperbarui.');
+        return redirect()->route('admin.facility.index')->with('success', 'Facility successfully updated!.');
     }
 
     // Menghapus fasilitas
@@ -115,12 +115,12 @@ class FacilityController extends Controller
         $facility = Facility::findOrFail($id);
         // Jika data fasilitas tidak ditemukan, kembalikan pesan error
         if (!$facility) {
-            return redirect()->route('admin.facility.index')->with('error', 'Data fasilitas tidak ditemukan.');
+            return redirect()->route('admin.facility.index')->with('error', 'Data Facility tidak ditemukan.');
         }
         // Hapus data fasilitas
         $facility->delete();
         // Redirect ke halaman daftar fasilitas dengan pesan sukses
-        return redirect()->route('admin.facility.index')->with('success', 'Data fasilitas berhasil dihapus.');
+        return redirect()->route('admin.facility.index')->with('success', 'Data Facility successfully deleted!.');
     }
 
     public function getGalleriesByCategory($category_id)

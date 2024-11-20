@@ -57,7 +57,7 @@
                 <!-- Modal untuk setiap kategori -->
                 <div class="modal fade" id="categoryModal{{ $category->id }}" tabindex="-1"
                     aria-labelledby="categoryModalLabel{{ $category->id }}" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="categoryModalLabel{{ $category->id }}" style="color: black">
@@ -81,10 +81,10 @@
                                                 onmouseover="this.style.opacity='1'"
                                                 onmouseout="this.style.opacity='0'"></div>
                                             <h5
-                                                style="position: absolute; color: white; top: 40%; left: 10px; transform: none; font-weight: normal;">
+                                                style="position: absolute; color: white; top: 30%; left: 10px; transform: none; font-weight: normal;">
                                                 {{ $gallery->title }}</h5>
                                             <div
-                                                style="position: absolute; top: 65%; left: 10px; width: 50px; height: 2px; background-color: rgba(255, 255, 0, 0.9);">
+                                                style="position: absolute; top: 49%; left: 10px; width: 50px; height: 3px; background-color: rgba(255, 255, 0, 0.9);">
                                             </div>
                                         </a>
                                     </div>
